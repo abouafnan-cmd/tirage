@@ -3,8 +3,16 @@ let names = [];
 let topics = [];
 let isSpinning = false;
 
-// تحميل البيانات من localStorage
+// تحميل البيانات عند فتح الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    loadData();
+    loadHistory();
+    updateStats();
+});
+
 function loadData() {
+    checkStoredData();
+    
     const savedNames = JSON.parse(localStorage.getItem('lotteryNames'));
     const savedTopics = JSON.parse(localStorage.getItem('lotteryTopics'));
     
@@ -21,14 +29,13 @@ function loadData() {
     }
     
     updateStats();
-    showNotification('تم تحميل البيانات بنجاح!', 'success');
 }
 
 // الاستماع للرسائل من صفحة التحكم
 window.addEventListener('message', function(event) {
     if (event.data.type === 'DATA_UPDATED') {
-        names = event.data.names;
-        topics = event.data.topics;
+        names = event.data.names || [];
+        topics = event.data.topics || [];
         updateStats();
         showNotification('تم تحديث البيانات من لوحة التحكم!', 'success');
     }
@@ -148,6 +155,7 @@ function saveToLocalStorage(item) {
 function loadHistory() {
     const history = JSON.parse(localStorage.getItem('lotteryHistory')) || [];
     const historyList = document.getElementById('historyList');
+    historyList.innerHTML = '';
     
     history.forEach(item => {
         const li = document.createElement('li');
@@ -172,13 +180,7 @@ function exportHistory() {
     }
     
     const data = history.join('\n');
-    const blob = new Blob([data], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'سجل-السحوبات.txt';
-    a.click();
-    URL.revokeObjectURL(url);
+    exportData(data, 'سجل-السحوبات.txt', 'text/plain;charset=utf-8');
     showNotification('تم تصدير سجل السحوبات', 'success');
 }
 
@@ -187,11 +189,3 @@ function updateStats() {
     document.getElementById('topicsCount').textContent = topics.length;
     document.getElementById('combinationsCount').textContent = names.length * topics.length;
 }
-
-// تحميل البيانات والسجل عند فتح الصفحة
-window.onload = function() {
-    loadData();
-    loadHistory();
-    updateStats();
-    checkStoredData();
-};

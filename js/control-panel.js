@@ -1,62 +1,57 @@
 // إدارة لوحة التحكم
-let nameGroups = JSON.parse(localStorage.getItem('lotteryNameGroups')) || {
-    'المستوى التمهيدي': ["أحمد", "محمد", "فاطمة"],
-    'المستوى الأولي': ["سارة", "خالد", "ليلى"],
-    'المستوى الإعدادي': [],
-    'المستوى الثانوي': []
-};
+let nameGroups = {};
+let topicGroups = {};
+let currentNameGroup = '';
+let currentTopicGroup = '';
 
-let topicGroups = JSON.parse(localStorage.getItem('lotteryTopicGroups')) || {
-    'موضوعات ثقافية': ["التسويق الرقمي", "الذكاء الاصطناعي"],
-    'موضوعات رياضية': ["كرة القدم", "السباحة"],
-    'موضوعات دينية': [],
-    'موضوعات لغوية': []
-};
+// تهيئة الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    initializeControlPanel();
+});
 
-let currentNameGroup = Object.keys(nameGroups)[0];
-let currentTopicGroup = Object.keys(topicGroups)[0];
-let lotteryWindow = null;
+function initializeControlPanel() {
+    checkStoredData();
+    loadData();
+    renderLists();
+}
 
-// دالة عرض الأقسام
+function loadData() {
+    nameGroups = JSON.parse(localStorage.getItem('lotteryNameGroups') || '{}');
+    topicGroups = JSON.parse(localStorage.getItem('lotteryTopicGroups') || '{}');
+    
+    currentNameGroup = Object.keys(nameGroups)[0] || '';
+    currentTopicGroup = Object.keys(topicGroups)[0] || '';
+    
+    updateNameGroupsUI();
+    updateTopicGroupsUI();
+    updateStats();
+}
+
 function showSection(sectionName) {
+    // إخفاء جميع الأقسام
     document.querySelectorAll('.panel-section').forEach(section => {
         section.classList.remove('active');
     });
     
+    // إلغاء تفعيل جميع الأزرار
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('active');
     });
     
+    // إظهار القسم المحدد
     const targetSection = document.getElementById(sectionName + '-section');
     if (targetSection) {
         targetSection.classList.add('active');
     }
     
+    // تفعيل الزر المحدد
     event.target.classList.add('active');
     
+    // إذا كان قسم المعاينة، قم بتحميل المعاينة
     if (sectionName === 'preview') {
         loadPreview();
     } else if (sectionName === 'stats') {
         updateStats();
-    }
-}
-
-// تحديث صفحة القرعة
-function updateLotteryPage() {
-    const activeNames = nameGroups[currentNameGroup] || [];
-    const activeTopics = topicGroups[currentTopicGroup] || [];
-    
-    localStorage.setItem('lotteryNames', JSON.stringify(activeNames));
-    localStorage.setItem('lotteryTopics', JSON.stringify(activeTopics));
-    localStorage.setItem('lotteryNameGroups', JSON.stringify(nameGroups));
-    localStorage.setItem('lotteryTopicGroups', JSON.stringify(topicGroups));
-    
-    if (lotteryWindow && !lotteryWindow.closed) {
-        lotteryWindow.postMessage({
-            type: 'DATA_UPDATED',
-            names: activeNames,
-            topics: activeTopics
-        }, '*');
     }
 }
 
@@ -75,7 +70,10 @@ function createNameGroup() {
     
     nameGroups[groupName] = [];
     document.getElementById('newNameGroup').value = '';
+    currentNameGroup = groupName;
+    
     updateNameGroupsUI();
+    updateLotteryPage();
     showNotification(`تم إنشاء مجموعة "${groupName}"`, 'success');
 }
 
@@ -86,6 +84,7 @@ function switchNameGroup() {
         currentNameGroup = groupName;
         updateNameGroupsUI();
         renderLists();
+        updateLotteryPage();
         showNotification(`تم التبديل إلى مجموعة "${groupName}"`, 'success');
     }
 }
@@ -96,16 +95,21 @@ function deleteNameGroup() {
         return;
     }
     
+    if (!currentNameGroup) return;
+    
     if (confirm(`هل أنت متأكد من حذف مجموعة "${currentNameGroup}"؟ سيتم حذف جميع الأسماء فيها.`)) {
         delete nameGroups[currentNameGroup];
         currentNameGroup = Object.keys(nameGroups)[0];
         updateNameGroupsUI();
         renderLists();
+        updateLotteryPage();
         showNotification('تم حذف المجموعة', 'success');
     }
 }
 
 function renameNameGroup() {
+    if (!currentNameGroup) return;
+    
     const newName = prompt('أدخل الاسم الجديد للمجموعة:', currentNameGroup);
     if (newName && newName.trim() && newName !== currentNameGroup) {
         if (nameGroups[newName]) {
@@ -116,6 +120,7 @@ function renameNameGroup() {
         delete nameGroups[currentNameGroup];
         currentNameGroup = newName;
         updateNameGroupsUI();
+        updateLotteryPage();
         showNotification('تم تغيير اسم المجموعة', 'success');
     }
 }
@@ -124,6 +129,7 @@ function updateNameGroupsUI() {
     const select = document.getElementById('nameGroupSelect');
     const groupsList = document.getElementById('nameGroupsList');
     
+    // تحديث القائمة المنسدلة
     select.innerHTML = '<option value="">اختر مجموعة...</option>';
     Object.keys(nameGroups).forEach(group => {
         const option = document.createElement('option');
@@ -133,6 +139,7 @@ function updateNameGroupsUI() {
         select.appendChild(option);
     });
     
+    // تحديث قائمة المجموعات
     groupsList.innerHTML = '';
     Object.keys(nameGroups).forEach(group => {
         const groupCard = document.createElement('div');
@@ -141,34 +148,15 @@ function updateNameGroupsUI() {
             currentNameGroup = group;
             updateNameGroupsUI();
             renderLists();
+            updateLotteryPage();
         };
         
         groupCard.innerHTML = `
-            <div class="group-actions">
-                <button class="btn btn-xs btn-warning" onclick="event.stopPropagation(); duplicateNameGroup('${group}')">نسخ</button>
-            </div>
             <div class="group-name">${group}</div>
             <div class="group-count">${nameGroups[group].length} اسم</div>
         `;
         groupsList.appendChild(groupCard);
     });
-    
-    updateLotteryPage();
-}
-
-function duplicateNameGroup(groupName) {
-    const newName = prompt(`أدخل اسم للمجموعة الجديدة (نسخة من ${groupName}):`, `${groupName} - نسخة`);
-    if (newName && newName.trim()) {
-        if (nameGroups[newName]) {
-            showNotification('اسم المجموعة موجود مسبقاً!', 'error');
-            return;
-        }
-        nameGroups[newName] = [...nameGroups[groupName]];
-        currentNameGroup = newName;
-        updateNameGroupsUI();
-        renderLists();
-        showNotification(`تم نسخ مجموعة "${groupName}" إلى "${newName}"`, 'success');
-    }
 }
 
 // إدارة مجموعات المواضيع
@@ -186,7 +174,10 @@ function createTopicGroup() {
     
     topicGroups[groupName] = [];
     document.getElementById('newTopicGroup').value = '';
+    currentTopicGroup = groupName;
+    
     updateTopicGroupsUI();
+    updateLotteryPage();
     showNotification(`تم إنشاء مجموعة "${groupName}"`, 'success');
 }
 
@@ -197,6 +188,7 @@ function switchTopicGroup() {
         currentTopicGroup = groupName;
         updateTopicGroupsUI();
         renderLists();
+        updateLotteryPage();
         showNotification(`تم التبديل إلى مجموعة "${groupName}"`, 'success');
     }
 }
@@ -207,16 +199,21 @@ function deleteTopicGroup() {
         return;
     }
     
+    if (!currentTopicGroup) return;
+    
     if (confirm(`هل أنت متأكد من حذف مجموعة "${currentTopicGroup}"؟ سيتم حذف جميع المواضيع فيها.`)) {
         delete topicGroups[currentTopicGroup];
         currentTopicGroup = Object.keys(topicGroups)[0];
         updateTopicGroupsUI();
         renderLists();
+        updateLotteryPage();
         showNotification('تم حذف المجموعة', 'success');
     }
 }
 
 function renameTopicGroup() {
+    if (!currentTopicGroup) return;
+    
     const newName = prompt('أدخل الاسم الجديد للمجموعة:', currentTopicGroup);
     if (newName && newName.trim() && newName !== currentTopicGroup) {
         if (topicGroups[newName]) {
@@ -227,6 +224,7 @@ function renameTopicGroup() {
         delete topicGroups[currentTopicGroup];
         currentTopicGroup = newName;
         updateTopicGroupsUI();
+        updateLotteryPage();
         showNotification('تم تغيير اسم المجموعة', 'success');
     }
 }
@@ -252,37 +250,18 @@ function updateTopicGroupsUI() {
             currentTopicGroup = group;
             updateTopicGroupsUI();
             renderLists();
+            updateLotteryPage();
         };
         
         groupCard.innerHTML = `
-            <div class="group-actions">
-                <button class="btn btn-xs btn-warning" onclick="event.stopPropagation(); duplicateTopicGroup('${group}')">نسخ</button>
-            </div>
             <div class="group-name">${group}</div>
             <div class="group-count">${topicGroups[group].length} موضوع</div>
         `;
         groupsList.appendChild(groupCard);
     });
-    
-    updateLotteryPage();
 }
 
-function duplicateTopicGroup(groupName) {
-    const newName = prompt(`أدخل اسم للمجموعة الجديدة (نسخة من ${groupName}):`, `${groupName} - نسخة`);
-    if (newName && newName.trim()) {
-        if (topicGroups[newName]) {
-            showNotification('اسم المجموعة موجود مسبقاً!', 'error');
-            return;
-        }
-        topicGroups[newName] = [...topicGroups[groupName]];
-        currentTopicGroup = newName;
-        updateTopicGroupsUI();
-        renderLists();
-        showNotification(`تم نسخ مجموعة "${groupName}" إلى "${newName}"`, 'success');
-    }
-}
-
-// إضافة وحذف العناصر
+// إضافة العناصر
 function addItem(type) {
     const input = document.getElementById(type + 'Input');
     const value = input.value.trim();
@@ -293,16 +272,24 @@ function addItem(type) {
     }
     
     if (type === 'name') {
+        if (!currentNameGroup) {
+            showNotification('يرجى اختيار مجموعة أسماء أولاً!', 'error');
+            return;
+        }
         const currentGroup = nameGroups[currentNameGroup];
         if (currentGroup.includes(value)) {
-            showNotification('هذا الاسم موجود مسبقاً في هذه المجموعة!', 'error');
+            showNotification('هذا الاسم موجود مسبقاً!', 'error');
             return;
         }
         currentGroup.push(value);
     } else if (type === 'topic') {
+        if (!currentTopicGroup) {
+            showNotification('يرجى اختيار مجموعة مواضيع أولاً!', 'error');
+            return;
+        }
         const currentGroup = topicGroups[currentTopicGroup];
         if (currentGroup.includes(value)) {
-            showNotification('هذا الموضوع موجود مسبقاً في هذه المجموعة!', 'error');
+            showNotification('هذا الموضوع موجود مسبقاً!', 'error');
             return;
         }
         currentGroup.push(value);
@@ -328,7 +315,7 @@ function deleteItem(type, index) {
     }
 }
 
-// الاستيراد من ملفات
+// الاستيراد من الملفات
 function importFromTXT(type, fileInput) {
     const file = fileInput.files[0];
     if (!file) return;
@@ -341,22 +328,31 @@ function importFromTXT(type, fileInput) {
                 .map(item => item.trim())
                 .filter(item => item !== '');
             
-            if (type === 'names') {
-                const currentGroup = nameGroups[currentNameGroup];
-                const newItems = items.filter(item => !currentGroup.includes(item));
-                nameGroups[currentNameGroup] = [...currentGroup, ...newItems];
-                showNotification(`تم استيراد ${newItems.length} اسم جديد إلى مجموعة "${currentNameGroup}"`, 'success');
-            } else if (type === 'topics') {
-                const currentGroup = topicGroups[currentTopicGroup];
-                const newItems = items.filter(item => !currentGroup.includes(item));
-                topicGroups[currentTopicGroup] = [...currentGroup, ...newItems];
-                showNotification(`تم استيراد ${newItems.length} موضوع جديد إلى مجموعة "${currentTopicGroup}"`, 'success');
+            if (items.length > 0) {
+                if (type === 'names') {
+                    if (!currentNameGroup) {
+                        showNotification('يرجى اختيار مجموعة أسماء أولاً!', 'error');
+                        return;
+                    }
+                    const currentGroup = nameGroups[currentNameGroup];
+                    const newItems = items.filter(item => !currentGroup.includes(item));
+                    nameGroups[currentNameGroup] = [...currentGroup, ...newItems];
+                    showNotification(`تم استيراد ${newItems.length} اسم`, 'success');
+                } else if (type === 'topics') {
+                    if (!currentTopicGroup) {
+                        showNotification('يرجى اختيار مجموعة مواضيع أولاً!', 'error');
+                        return;
+                    }
+                    const currentGroup = topicGroups[currentTopicGroup];
+                    const newItems = items.filter(item => !currentGroup.includes(item));
+                    topicGroups[currentTopicGroup] = [...currentGroup, ...newItems];
+                    showNotification(`تم استيراد ${newItems.length} موضوع`, 'success');
+                }
+                
+                updateLotteryPage();
+                renderLists();
+                fileInput.value = '';
             }
-            
-            updateLotteryPage();
-            renderLists();
-            fileInput.value = '';
-            
         } catch (error) {
             showNotification('خطأ في معالجة الملف', 'error');
         }
@@ -381,22 +377,31 @@ function importFromExcel(type, fileInput) {
                 .map(item => item ? item.toString().trim() : '')
                 .filter(item => item !== '');
             
-            if (type === 'names') {
-                const currentGroup = nameGroups[currentNameGroup];
-                const newItems = items.filter(item => !currentGroup.includes(item));
-                nameGroups[currentNameGroup] = [...currentGroup, ...newItems];
-                showNotification(`تم استيراد ${newItems.length} اسم من Excel إلى مجموعة "${currentNameGroup}"`, 'success');
-            } else if (type === 'topics') {
-                const currentGroup = topicGroups[currentTopicGroup];
-                const newItems = items.filter(item => !currentGroup.includes(item));
-                topicGroups[currentTopicGroup] = [...currentGroup, ...newItems];
-                showNotification(`تم استيراد ${newItems.length} موضوع من Excel إلى مجموعة "${currentTopicGroup}"`, 'success');
+            if (items.length > 0) {
+                if (type === 'names') {
+                    if (!currentNameGroup) {
+                        showNotification('يرجى اختيار مجموعة أسماء أولاً!', 'error');
+                        return;
+                    }
+                    const currentGroup = nameGroups[currentNameGroup];
+                    const newItems = items.filter(item => !currentGroup.includes(item));
+                    nameGroups[currentNameGroup] = [...currentGroup, ...newItems];
+                    showNotification(`تم استيراد ${newItems.length} اسم من Excel`, 'success');
+                } else if (type === 'topics') {
+                    if (!currentTopicGroup) {
+                        showNotification('يرجى اختيار مجموعة مواضيع أولاً!', 'error');
+                        return;
+                    }
+                    const currentGroup = topicGroups[currentTopicGroup];
+                    const newItems = items.filter(item => !currentGroup.includes(item));
+                    topicGroups[currentTopicGroup] = [...currentGroup, ...newItems];
+                    showNotification(`تم استيراد ${newItems.length} موضوع من Excel`, 'success');
+                }
+                
+                updateLotteryPage();
+                renderLists();
+                fileInput.value = '';
             }
-            
-            updateLotteryPage();
-            renderLists();
-            fileInput.value = '';
-            
         } catch (error) {
             showNotification('خطأ في معالجة ملف Excel', 'error');
         }
@@ -406,6 +411,8 @@ function importFromExcel(type, fileInput) {
 
 // دوال المساعدة
 function clearCurrentNameGroup() {
+    if (!currentNameGroup) return;
+    
     if (confirm(`هل أنت متأكد من مسح جميع الأسماء في مجموعة "${currentNameGroup}"؟`)) {
         nameGroups[currentNameGroup] = [];
         updateLotteryPage();
@@ -415,6 +422,8 @@ function clearCurrentNameGroup() {
 }
 
 function clearCurrentTopicGroup() {
+    if (!currentTopicGroup) return;
+    
     if (confirm(`هل أنت متأكد من مسح جميع المواضيع في مجموعة "${currentTopicGroup}"؟`)) {
         topicGroups[currentTopicGroup] = [];
         updateLotteryPage();
@@ -424,30 +433,27 @@ function clearCurrentTopicGroup() {
 }
 
 function exportCurrentNameGroup() {
+    if (!currentNameGroup) return;
+    
     const data = JSON.stringify(nameGroups[currentNameGroup], null, 2);
-    const blob = new Blob([data], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `أسماء-${currentNameGroup}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
+    exportData(data, `أسماء-${currentNameGroup}.json`);
     showNotification('تم تصدير المجموعة الحالية', 'success');
 }
 
 function exportCurrentTopicGroup() {
+    if (!currentTopicGroup) return;
+    
     const data = JSON.stringify(topicGroups[currentTopicGroup], null, 2);
-    const blob = new Blob([data], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `مواضيع-${currentTopicGroup}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
+    exportData(data, `مواضيع-${currentTopicGroup}.json`);
     showNotification('تم تصدير المجموعة الحالية', 'success');
 }
 
 function addSampleNames() {
+    if (!currentNameGroup) {
+        showNotification('يرجى اختيار مجموعة أسماء أولاً!', 'error');
+        return;
+    }
+    
     const sampleNames = ["علي", "حسن", "زينب", "مريم", "يوسف", "إبراهيم", "آمنة", "جمال"];
     const currentGroup = nameGroups[currentNameGroup];
     const newNames = sampleNames.filter(name => !currentGroup.includes(name));
@@ -458,6 +464,11 @@ function addSampleNames() {
 }
 
 function addSampleTopics() {
+    if (!currentTopicGroup) {
+        showNotification('يرجى اختيار مجموعة مواضيع أولاً!', 'error');
+        return;
+    }
+    
     const sampleTopics = ["التعلم الآلي", "البرمجة", "التصميم", "الكتابة", "البحث العلمي"];
     const currentGroup = topicGroups[currentTopicGroup];
     const newTopics = sampleTopics.filter(topic => !currentGroup.includes(topic));
@@ -465,35 +476,6 @@ function addSampleTopics() {
     updateLotteryPage();
     renderLists();
     showNotification(`تم إضافة ${newTopics.length} موضوع مثال`, 'success');
-}
-
-function pasteFromClipboard(type) {
-    navigator.clipboard.readText().then(text => {
-        const items = text.split('\n')
-            .map(item => item.trim())
-            .filter(item => item !== '');
-        
-        if (items.length > 0) {
-            if (type === 'names') {
-                const currentGroup = nameGroups[currentNameGroup];
-                const newItems = items.filter(item => !currentGroup.includes(item));
-                nameGroups[currentNameGroup] = [...currentGroup, ...newItems];
-                showNotification(`تم لصق ${newItems.length} اسم من الحافظة`, 'success');
-            } else if (type === 'topics') {
-                const currentGroup = topicGroups[currentTopicGroup];
-                const newItems = items.filter(item => !currentGroup.includes(item));
-                topicGroups[currentTopicGroup] = [...currentGroup, ...newItems];
-                showNotification(`تم لصق ${newItems.length} موضوع من الحافظة`, 'success');
-            }
-            
-            updateLotteryPage();
-            renderLists();
-        } else {
-            showNotification('لا توجد بيانات في الحافظة', 'error');
-        }
-    }).catch(() => {
-        showNotification('تعذر الوصول إلى الحافظة', 'error');
-    });
 }
 
 function renderLists() {
@@ -529,9 +511,9 @@ function updateStats() {
     const namesCount = nameGroups[currentNameGroup] ? nameGroups[currentNameGroup].length : 0;
     const topicsCount = topicGroups[currentTopicGroup] ? topicGroups[currentTopicGroup].length : 0;
     
-    document.getElementById('namesCount').textContent = namesCount;
-    document.getElementById('topicsCount').textContent = topicsCount;
-    document.getElementById('combinationsCount').textContent = namesCount * topicsCount;
+    document.getElementById('statsNamesCount').textContent = namesCount;
+    document.getElementById('statsTopicsCount').textContent = topicsCount;
+    document.getElementById('statsCombinationsCount').textContent = namesCount * topicsCount;
 }
 
 function loadPreview() {
@@ -539,23 +521,23 @@ function loadPreview() {
     const currentTopics = topicGroups[currentTopicGroup] || [];
     
     document.getElementById('lotteryPreview').innerHTML = `
-        <div class="preview-content">
-            <h3 class="preview-title">معاينة القرعة</h3>
-            <div class="preview-info">
-                <div class="preview-group">
-                    <strong>مجموعة الأسماء:</strong> ${currentNameGroup}
+        <div style="text-align: center; padding: 20px;">
+            <h3 style="color: #333; margin-bottom: 20px; font-size: 1.8em;">معاينة القرعة</h3>
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 20px; margin-bottom: 25px; border: 2px solid #e9ecef;">
+                <div style="margin-bottom: 15px; font-size: 1.2em;">
+                    <strong>مجموعة الأسماء:</strong> ${currentNameGroup || 'غير محدد'}
                 </div>
-                <div class="preview-items">
+                <div style="margin-bottom: 20px;">
                     <strong>الأسماء (${currentNames.length}):</strong> ${currentNames.length > 0 ? currentNames.join('، ') : 'لا توجد أسماء'}
                 </div>
-                <div class="preview-group">
-                    <strong>مجموعة المواضيع:</strong> ${currentTopicGroup}
+                <div style="margin-bottom: 15px; font-size: 1.2em;">
+                    <strong>مجموعة المواضيع:</strong> ${currentTopicGroup || 'غير محدد'}
                 </div>
-                <div class="preview-items">
+                <div>
                     <strong>المواضيع (${currentTopics.length}):</strong> ${currentTopics.length > 0 ? currentTopics.join('، ') : 'لا توجد مواضيع'}
                 </div>
             </div>
-            <button class="btn btn-success" onclick="openLottery()">
+            <button class="btn btn-success" onclick="openLottery()" style="font-size: 1.2em; padding: 15px 30px;">
                 <i class="fas fa-play"></i> فتح صفحة القرعة
             </button>
         </div>
@@ -563,7 +545,18 @@ function loadPreview() {
 }
 
 function openLottery() {
-    lotteryWindow = window.open('lottery.html', '_blank', 'width=1200,height=800');
+    window.open('lottery.html', '_blank');
+}
+
+function updateLotteryPage() {
+    localStorage.setItem('lotteryNameGroups', JSON.stringify(nameGroups));
+    localStorage.setItem('lotteryTopicGroups', JSON.stringify(topicGroups));
+    
+    const activeNames = nameGroups[currentNameGroup] || [];
+    const activeTopics = topicGroups[currentTopicGroup] || [];
+    
+    localStorage.setItem('lotteryNames', JSON.stringify(activeNames));
+    localStorage.setItem('lotteryTopics', JSON.stringify(activeTopics));
 }
 
 function handleEnter(event, type) {
@@ -571,11 +564,3 @@ function handleEnter(event, type) {
         addItem(type);
     }
 }
-
-// التحميل الأولي
-document.addEventListener('DOMContentLoaded', function() {
-    updateNameGroupsUI();
-    updateTopicGroupsUI();
-    renderLists();
-    checkStoredData();
-});

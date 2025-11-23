@@ -33,10 +33,6 @@ h1 {
     margin-bottom: 15px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     font-weight: 700;
-    background: linear-gradient(45deg, #fff, #e3f2fd);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .subtitle {
@@ -163,7 +159,6 @@ footer {
     font-size: 1.1em;
 }
 
-/* تأثيرات الحركة */
 .floating {
     animation: floating 3s ease-in-out infinite;
 }
@@ -174,7 +169,6 @@ footer {
     100% { transform: translateY(0px); }
 }
 
-/* التجاوب مع الشاشات الصغيرة */
 @media (max-width: 768px) {
     h1 {
         font-size: 2.5em;

@@ -1,10 +1,24 @@
-/* سيحتوي على جميع تنسيقات صفحة القرعة من الملف الأصلي */
-/* سيتم فصل التنسيقات من lottery.html إلى هنا */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-attachment: fixed;
+}
 
 .lottery-container {
     background: rgba(255, 255, 255, 0.95);
     border-radius: 30px;
-    padding: 50px;
+    padding: 40px;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
     max-width: 1000px;
     width: 100%;
@@ -12,4 +26,284 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* جميع تنسيقات صفحة القرعة الأخرى... */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    font-size: 3em;
+    font-weight: 700;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-item {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.stat-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 1.2em;
+    opacity: 0.9;
+    font-weight: 600;
+}
+
+.lottery-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 30px;
+    border-radius: 25px;
+    border: 3px solid #e9ecef;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+}
+
+.section h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    font-weight: 700;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 15px;
+}
+
+.result-box {
+    background: white;
+    border: 4px dashed #667eea;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 20px 0;
+    font-size: 2em;
+    font-weight: bold;
+    color: #2c3e50;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.result-box.spinning {
+    animation: spin 0.1s infinite;
+    color: #667eea;
+    border-color: #4ecdc4;
+}
+
+@keyframes spin {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.btn {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.btn:active {
+    transform: translateY(-2px);
+}
+
+.btn-clear {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+}
+
+.btn-success {
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+}
+
+.btn-info {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+}
+
+.controls {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.history {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 25px;
+    border-radius: 20px;
+    margin-top: 30px;
+    border: 2px solid #e9ecef;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.history h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    font-weight: 700;
+    text-align: center;
+}
+
+#historyList {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 15px;
+    background: white;
+    border-radius: 15px;
+    border: 2px solid #e0e0e0;
+    margin-bottom: 15px;
+}
+
+#historyList li {
+    padding: 12px 15px;
+    border-bottom: 2px solid #f0f0f0;
+    color: #555;
+    font-size: 1em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+#historyList li:hover {
+    background: #f8f9fa;
+    transform: translateX(-5px);
+}
+
+#historyList li:last-child {
+    border-bottom: none;
+}
+
+.history-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-sm {
+    padding: 10px 20px;
+    font-size: 0.9em;
+}
+
+.notification {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    padding: 20px 25px;
+    background: linear-gradient(45deg, #4caf50, #45a049);
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transform: translateX(400px);
+    transition: transform 0.4s ease;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.error {
+    background: linear-gradient(45deg, #f44336, #e53935);
+}
+
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+#historyList::-webkit-scrollbar {
+    width: 8px;
+}
+
+#historyList::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#historyList::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 10px;
+}
+
+#historyList::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #5a6fd8, #6a42a0);
+}
+
+@media (max-width: 768px) {
+    .lottery-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .lottery-container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2.2em;
+    }
+    
+    .stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .result-box {
+        font-size: 1.7em;
+        padding: 20px;
+    }
+    
+    .history-actions {
+        flex-direction: column;
+    }
+}
