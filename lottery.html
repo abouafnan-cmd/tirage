@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>القرعة العشوائية - أسماء ومواضيع</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/lottery.css">
+</head>
+<body>
+    <div class="lottery-container">
+        <h1 class="floating">🎲 القرعة العشوائية 🎲</h1>
+        
+        <!-- الإحصائيات -->
+        <div class="stats">
+            <div class="stat-item pulse">
+                <div class="stat-number" id="namesCount">0</div>
+                <div class="stat-label">عدد الأسماء</div>
+            </div>
+            <div class="stat-item pulse">
+                <div class="stat-number" id="topicsCount">0</div>
+                <div class="stat-label">عدد المواضيع</div>
+            </div>
+            <div class="stat-item pulse">
+                <div class="stat-number" id="combinationsCount">0</div>
+                <div class="stat-label">تركيبات ممكنة</div>
+            </div>
+        </div>
+        
+        <div class="lottery-section">
+            <!-- قسم الأسماء -->
+            <div class="section">
+                <h2><i class="fas fa-users"></i> سحب الأسماء</h2>
+                <div class="result-box" id="nameResult">???</div>
+                <button class="btn" onclick="drawName()">
+                    <i class="fas fa-random"></i> سحب اسم عشوائي
+                </button>
+                <button class="btn btn-clear" onclick="clearResult('name')">
+                    <i class="fas fa-eraser"></i> مسح
+                </button>
+            </div>
+            
+            <!-- قسم المواضيع -->
+            <div class="section">
+                <h2><i class="fas fa-book"></i> سحب المواضيع</h2>
+                <div class="result-box" id="topicResult">???</div>
+                <button class="btn" onclick="drawTopic()">
+                    <i class="fas fa-random"></i> سحب موضوع عشوائي
+                </button>
+                <button class="btn btn-clear" onclick="clearResult('topic')">
+                    <i class="fas fa-eraser"></i> مسح
+                </button>
+            </div>
+        </div>
+        
+        <!-- سحب مزدوج -->
+        <div class="controls">
+            <button class="btn btn-success" onclick="drawBoth()">
+                <i class="fas fa-sync-alt"></i> سحب اسم وموضوع معاً
+            </button>
+            <button class="btn btn-info" onclick="location.href='control-panel.html'">
+                <i class="fas fa-cogs"></i> لوحة التحكم
+            </button>
+            <button class="btn" onclick="location.href='index.html'">
+                <i class="fas fa-home"></i> الرئيسية
+            </button>
+        </div>
+        
+        <!-- السجل -->
+        <div class="history">
+            <h3><i class="fas fa-history"></i> سجل السحوبات</h3>
+            <ul id="historyList"></ul>
+            <div class="history-actions">
+                <button class="btn btn-sm" onclick="clearHistory()">
+                    <i class="fas fa-trash"></i> مسح السجل
+                </button>
+                <button class="btn btn-sm" onclick="exportHistory()">
+                    <i class="fas fa-download"></i> تصدير السجل
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/lottery.js"></script>
+</body>
+</html>

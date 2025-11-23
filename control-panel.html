@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - القرعة العشوائية</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/control-panel.css">
+</head>
+<body>
+    <div class="control-panel-container">
+        <header>
+            <h1 class="floating">🎮 لوحة تحكم القرعة العشوائية</h1>
+            <div class="nav-buttons">
+                <button class="nav-btn active" onclick="showSection('names')">
+                    <i class="fas fa-users"></i> إدارة الأسماء
+                </button>
+                <button class="nav-btn" onclick="showSection('topics')">
+                    <i class="fas fa-book"></i> إدارة المواضيع
+                </button>
+                <button class="nav-btn" onclick="showSection('preview')">
+                    <i class="fas fa-eye"></i> معاينة القرعة
+                </button>
+                <button class="nav-btn" onclick="showSection('stats')">
+                    <i class="fas fa-chart-bar"></i> الإحصائيات
+                </button>
+                <button class="nav-btn" onclick="location.href='index.html'">
+                    <i class="fas fa-home"></i> الرئيسية
+                </button>
+            </div>
+        </header>
+
+        <div class="control-panel">
+            <!-- قسم إدارة الأسماء -->
+            <div id="names-section" class="panel-section active">
+                <h2 class="section-title">
+                    <i class="fas fa-users"></i> إدارة الأسماء
+                </h2>
+                
+                <!-- إدارة المجموعات -->
+                <div class="groups-management">
+                    <h3 class="groups-title">
+                        <i class="fas fa-folder"></i> مجموعات الأسماء
+                    </h3>
+                    <div class="group-controls">
+                        <div>
+                            <input type="text" id="newNameGroup" placeholder="اسم المجموعة الجديدة (مثال: المستوى التمهيدي)" class="group-input">
+                        </div>
+                        <button class="btn btn-success" onclick="createNameGroup()">
+                            <i class="fas fa-plus"></i> إنشاء مجموعة جديدة
+                        </button>
+                        <button class="btn btn-warning" onclick="deleteNameGroup()">
+                            <i class="fas fa-trash"></i> حذف المجموعة المحددة
+                        </button>
+                    </div>
+                    
+                    <div class="group-selector">
+                        <select id="nameGroupSelect" onchange="switchNameGroup()">
+                            <option value="">اختر مجموعة...</option>
+                        </select>
+                        <button class="btn btn-info" onclick="renameNameGroup()">
+                            <i class="fas fa-edit"></i> تغيير اسم المجموعة
+                        </button>
+                    </div>
+                    
+                    <div class="groups-list" id="nameGroupsList">
+                        <!-- سيتم ملؤها بالمجموعات -->
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" id="nameInput" placeholder="أدخل اسم جديد..." onkeypress="handleEnter(event, 'name')">
+                    <button class="btn btn-primary" onclick="addItem('name')">
+                        <i class="fas fa-plus-circle"></i> إضافة اسم
+                    </button>
+                </div>
+                
+                <!-- قسم الاستيراد -->
+                <div class="import-section">
+                    <h3 class="import-title">
+                        <i class="fas fa-file-import"></i> استيراد الأسماء من ملف
+                    </h3>
+                    <div class="import-options">
+                        <div class="import-option">
+                            <input type="file" id="txtFileNames" accept=".txt" class="file-input" onchange="importFromTXT('names', this)">
+                            <label for="txtFileNames" class="file-label">
+                                <i class="fas fa-file-alt"></i> ملف TXT
+                            </label>
+                            <div class="file-info">سطر لكل اسم</div>
+                        </div>
+                        <div class="import-option">
+                            <input type="file" id="excelFileNames" accept=".xlsx,.xls" class="file-input" onchange="importFromExcel('names', this)">
+                            <label for="excelFileNames" class="file-label">
+                                <i class="fas fa-file-excel"></i> ملف Excel
+                            </label>
+                            <div class="file-info">عمود A يحتوي على الأسماء</div>
+                        </div>
+                        <div class="import-option">
+                            <input type="file" id="csvFileNames" accept=".csv" class="file-input" onchange="importFromCSV('names', this)">
+                            <label for="csvFileNames" class="file-label">
+                                <i class="fas fa-file-csv"></i> ملف CSV
+                            </label>
+                            <div class="file-info">فاصلة بين الأسماء</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <div class="action-btn" onclick="addSampleNames()">
+                        <i class="fas fa-magic"></i> أسماء مثال
+                    </div>
+                    <div class="action-btn" onclick="clearCurrentNameGroup()">
+                        <i class="fas fa-broom"></i> مسح المجموعة الحالية
+                    </div>
+                    <div class="action-btn" onclick="exportCurrentNameGroup()">
+                        <i class="fas fa-file-export"></i> تصدير المجموعة الحالية
+                    </div>
+                    <div class="action-btn" onclick="pasteFromClipboard('names')">
+                        <i class="fas fa-paste"></i> لصق من الحافظة
+                    </div>
+                </div>
+                
+                <div class="list-container">
+                    <div id="namesList"></div>
+                </div>
+            </div>
+
+            <!-- قسم إدارة المواضيع -->
+            <div id="topics-section" class="panel-section">
+                <h2 class="section-title">
+                    <i class="fas fa-book"></i> إدارة المواضيع
+                </h2>
+                
+                <!-- إدارة المجموعات -->
+                <div class="groups-management">
+                    <h3 class="groups-title">
+                        <i class="fas fa-folder"></i> مجموعات المواضيع
+                    </h3>
+                    <div class="group-controls">
+                        <div>
+                            <input type="text" id="newTopicGroup" placeholder="اسم المجموعة الجديدة (مثال: موضوعات ثقافية)" class="group-input">
+                        </div>
+                        <button class="btn btn-success" onclick="createTopicGroup()">
+                            <i class="fas fa-plus"></i> إنشاء مجموعة جديدة
+                        </button>
+                        <button class="btn btn-warning" onclick="deleteTopicGroup()">
+                            <i class="fas fa-trash"></i> حذف المجموعة المحددة
+                        </button>
+                    </div>
+                    
+                    <div class="group-selector">
+                        <select id="topicGroupSelect" onchange="switchTopicGroup()">
+                            <option value="">اختر مجموعة...</option>
+                        </select>
+                        <button class="btn btn-info" onclick="renameTopicGroup()">
+                            <i class="fas fa-edit"></i> تغيير اسم المجموعة
+                        </button>
+                    </div>
+                    
+                    <div class="groups-list" id="topicGroupsList">
+                        <!-- سيتم ملؤها بالمجموعات -->
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" id="topicInput" placeholder="أدخل موضوع جديد..." onkeypress="handleEnter(event, 'topic')">
+                    <button class="btn btn-primary" onclick="addItem('topic')">
+                        <i class="fas fa-plus-circle"></i> إضافة موضوع
+                    </button>
+                </div>
+                
+                <!-- قسم الاستيراد -->
+                <div class="import-section">
+                    <h3 class="import-title">
+                        <i class="fas fa-file-import"></i> استيراد المواضيع من ملف
+                    </h3>
+                    <div class="import-options">
+                        <div class="import-option">
+                            <input type="file" id="txtFileTopics" accept=".txt" class="file-input" onchange="importFromTXT('topics', this)">
+                            <label for="txtFileTopics" class="file-label">
+                                <i class="fas fa-file-alt"></i> ملف TXT
+                            </label>
+                            <div class="file-info">سطر لكل موضوع</div>
+                        </div>
+                        <div class="import-option">
+                            <input type="file" id="excelFileTopics" accept=".xlsx,.xls" class="file-input" onchange="importFromExcel('topics', this)">
+                            <label for="excelFileTopics" class="file-label">
+                                <i class="fas fa-file-excel"></i> ملف Excel
+                            </label>
+                            <div class="file-info">عمود A يحتوي على المواضيع</div>
+                        </div>
+                        <div class="import-option">
+                            <input type="file" id="csvFileTopics" accept=".csv" class="file-input" onchange="importFromCSV('topics', this)">
+                            <label for="csvFileTopics" class="file-label">
+                                <i class="fas fa-file-csv"></i> ملف CSV
+                            </label>
+                            <div class="file-info">فاصلة بين المواضيع</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <div class="action-btn" onclick="addSampleTopics()">
+                        <i class="fas fa-magic"></i> مواضيع مثال
+                    </div>
+                    <div class="action-btn" onclick="clearCurrentTopicGroup()">
+                        <i class="fas fa-broom"></i> مسح المجموعة الحالية
+                    </div>
+                    <div class="action-btn" onclick="exportCurrentTopicGroup()">
+                        <i class="fas fa-file-export"></i> تصدير المجموعة الحالية
+                    </div>
+                    <div class="action-btn" onclick="pasteFromClipboard('topics')">
+                        <i class="fas fa-paste"></i> لصق من الحافظة
+                    </div>
+                </div>
+                
+                <div class="list-container">
+                    <div id="topicsList"></div>
+                </div>
+            </div>
+
+            <!-- قسم المعاينة -->
+            <div id="preview-section" class="panel-section">
+                <h2 class="section-title">
+                    <i class="fas fa-eye"></i> معاينة القرعة
+                </h2>
+                <div id="lotteryPreview"></div>
+            </div>
+
+            <!-- قسم الإحصائيات -->
+            <div id="stats-section" class="panel-section">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-bar"></i> الإحصائيات
+                </h2>
+                <div class="stats">
+                    <div class="stat-card pulse">
+                        <div class="stat-number" id="namesCount">0</div>
+                        <div class="stat-label">عدد الأسماء</div>
+                    </div>
+                    <div class="stat-card pulse">
+                        <div class="stat-number" id="topicsCount">0</div>
+                        <div class="stat-label">عدد المواضيع</div>
+                    </div>
+                    <div class="stat-card pulse">
+                        <div class="stat-number" id="combinationsCount">0</div>
+                        <div class="stat-label">التركيبات الممكنة</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/control-panel.js"></script>
+</body>
+</html>
