@@ -6,12 +6,22 @@
     <title>تعلم الإنجليزية - سورة البقرة</title>
     <!-- ربط ملف التنسيقات -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- ربط ملف الـ Manifest لاحقاً -->
+    <!-- ربط ملف الـ Manifest لتطبيق الأندرويد -->
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
     <div class="container">
+        <!-- شريط الإعدادات الجديد (الوضع الليلي والخطوط) -->
+        <div class="settings-bar">
+            <button id="theme-toggle-btn" title="تغيير المظهر">🌙 الوضع الليلي</button>
+            <div class="font-sizer">
+                <span>الخط:</span>
+                <button id="font-decrease-btn">-</button>
+                <button id="font-increase-btn">+</button>
+            </div>
+        </div>
+
         <header>
             <h1>سورة البقرة - تعلم الإنجليزية</h1>
             <p>أدخل رقم الآية لعرض الترجمة (تقي الدين الهلالي ومحسن خان)</p>
@@ -33,6 +43,14 @@
                 <h3>الترجمة الإنجليزية:</h3>
                 <p id="english-text" dir="ltr"></p>
                 <button id="play-audio-btn">🔊 استمع للترجمة</button>
+                
+                <!-- خيارات التحكم في سرعة الصوت -->
+                <div class="speed-controls">
+                    <span class="speed-label">سرعة القراءة:</span>
+                    <button class="speed-btn" data-speed="0.5">بطء كثير (0.5x)</button>
+                    <button class="speed-btn active" data-speed="0.8">بطء متوسط (0.8x)</button>
+                    <button class="speed-btn" data-speed="1.0">عادي (1.0x)</button>
+                </div>
             </div>
 
             <div class="card linguistic-notes">

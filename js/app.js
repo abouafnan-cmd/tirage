@@ -1,4 +1,4 @@
-// 1. ربط المتغيرات بعناصر واجهة المستخدم (HTML)
+// 1. ربط المتغيرات بعناصر واجهة المستخدم
 const verseInput = document.getElementById('verse-input');
 const searchBtn = document.getElementById('search-btn');
 const resultContainer = document.getElementById('result-container');
@@ -8,12 +8,12 @@ const playAudioBtn = document.getElementById('play-audio-btn');
 const grammarNote = document.getElementById('grammar-note');
 const vocabularyList = document.getElementById('vocabulary-list');
 
-let currentEnglishText = ""; // متغير لحفظ النص الإنجليزي للقراءة الصوتية
+let currentEnglishText = ""; 
+let currentSpeechSpeed = 0.8; // السرعة الافتراضية (بطء متوسط للتعلم)
 
-// 2. دالة جلب البيانات من الملفات الأربعة معاً (بشكل متزامن)
+// 2. دالة جلب البيانات من الملفات الأربعة معاً
 async function fetchVerseData(verseNumber) {
     try {
-        // نستخدم Promise.all لضمان تحميل جميع الملفات في نفس اللحظة
         const [resAr, resEn, resVocab, resGrammar] = await Promise.all([
             fetch('data/arabic.json'),
             fetch('data/english.json'),
@@ -21,34 +21,28 @@ async function fetchVerseData(verseNumber) {
             fetch('data/grammar.json')
         ]);
         
-        // تحويل الاستجابات إلى صيغة JSON قابلة للقراءة
         const dataAr = await resAr.json();
         const dataEn = await resEn.json();
         const dataVocab = await resVocab.json();
         const dataGrammar = await resGrammar.json();
         
-        // بناء المفاتيح البرمجية للبحث حسب هيكلة كل ملف
         const arabicKey = "verse_" + verseNumber;
         const englishKey = "2:" + verseNumber;
         
-        // استخراج النصوص
         const arabicVerse = dataAr.verse[arabicKey];
         const englishVerse = dataEn[englishKey]?.t;
         
-        // التحقق من وجود الآية والترجمة
         if (arabicVerse && englishVerse) {
             const verseData = {
                 verse_number: parseInt(verseNumber),
                 arabic_text: arabicVerse,
                 english_translation: englishVerse,
                 linguistic_notes: {
-                    // إذا لم تُدرج فائدة أو مفردات، سيتم عرض رسالة افتراضية تمنع تعطل المنصة
                     grammar: dataGrammar[arabicKey] || "لم تُدرج إضاءة نحوية لهذه الآية بعد.",
                     vocabulary: dataVocab[arabicKey] || []
                 }
             };
             
-            // إرسال الكائن المُجمّع لدالة العرض
             displayResults(verseData);
             
         } else {
@@ -61,23 +55,27 @@ async function fetchVerseData(verseNumber) {
     }
 }
 
-// 3. دالة عرض البيانات المستخرجة في واجهة المستخدم
+// 3. دالة عرض البيانات وتقسيم النص الإنجليزي لتلوين الكلمات
 function displayResults(verse) {
-    // إظهار منطقة النتائج المخفية
     resultContainer.classList.remove('hidden');
-    
-    // تفريغ قائمة المفردات السابقة
     vocabularyList.innerHTML = "";
     
-    // تعبئة النص القرآني والترجمة
     arabicText.textContent = verse.arabic_text;
-    englishText.textContent = verse.english_translation;
-    currentEnglishText = verse.english_translation; // التخزين للنطق الصوتي
+    currentEnglishText = verse.english_translation; 
     
-    // تعبئة الإضاءة النحوية
+    // تقسيم النص الإنجليزي إلى كلمات مستقلة لتمكين ميزة التتبع اللحظي
+    englishText.innerHTML = "";
+    const words = verse.english_translation.split(" ");
+    words.forEach((word, index) => {
+        const span = document.createElement('span');
+        span.textContent = word + " ";
+        span.className = "word-token";
+        span.id = "word-" + index;
+        englishText.appendChild(span);
+    });
+    
     grammarNote.innerHTML = `<p><strong>فائدة نحوية: </strong>${verse.linguistic_notes.grammar}</p>`;
     
-    // تعبئة قائمة المفردات (إذا كانت موجودة)
     if (verse.linguistic_notes.vocabulary.length > 0) {
         verse.linguistic_notes.vocabulary.forEach(item => {
             const li = document.createElement('li');
@@ -89,15 +87,34 @@ function displayResults(verse) {
     }
 }
 
-// 4. دالة النطق الصوتي (Web Speech API)
+// 4. دالة النطق الصوتي مع ميزة تتبع وإبراز الكلمات أثناء نطقها
 function playAudio() {
     if ('speechSynthesis' in window) {
-        // إيقاف أي قراءة سابقة لتجنب تداخل الأصوات
         window.speechSynthesis.cancel();
         
         const utterance = new SpeechSynthesisUtterance(currentEnglishText);
-        utterance.lang = 'en-US'; // اللغة الإنجليزية الأمريكية
-        utterance.rate = 0.9;     // سرعة هادئة تناسب المتعلمين
+        utterance.lang = 'en-US';
+        utterance.rate = currentSpeechSpeed;
+        
+        const wordSpans = document.querySelectorAll('.word-token');
+        
+        utterance.onboundary = (event) => {
+            if (event.name === 'word') {
+                wordSpans.forEach(span => span.classList.remove('active-word'));
+                let charCount = 0;
+                for (let i = 0; i < wordSpans.length; i++) {
+                    charCount += wordSpans[i].textContent.length;
+                    if (event.charIndex < charCount) {
+                        wordSpans[i].classList.add('active-word');
+                        break;
+                    }
+                }
+            }
+        };
+        
+        utterance.onend = () => {
+            wordSpans.forEach(span => span.classList.remove('active-word'));
+        };
         
         window.speechSynthesis.speak(utterance);
     } else {
@@ -105,10 +122,57 @@ function playAudio() {
     }
 }
 
-// 5. الاستماع لأحداث النقر (الأزرار)
+// 5. ميزة الوضع الليلي
+const themeToggleBtn = document.getElementById('theme-toggle-btn');
+themeToggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    if (document.body.classList.contains('dark-mode')) {
+        themeToggleBtn.textContent = '☀️ الوضع الفاتح';
+    } else {
+        themeToggleBtn.textContent = '🌙 الوضع الليلي';
+    }
+});
+
+// 6. ميزة التحكم بحجم الخط
+const arabicParagraph = document.querySelector('.quran-text p');
+const englishParagraph = document.querySelector('.translation-text p');
+let currentArabicSize = 32; 
+let currentEnglishSize = 1.2; 
+
+document.getElementById('font-increase-btn').addEventListener('click', () => {
+    if (currentArabicSize < 44) {
+        currentArabicSize += 2;
+        currentEnglishSize += 0.1;
+        arabicParagraph.style.fontSize = currentArabicSize + 'px';
+        englishParagraph.style.fontSize = currentEnglishSize + 'rem';
+    }
+});
+
+document.getElementById('font-decrease-btn').addEventListener('click', () => {
+    if (currentArabicSize > 22) {
+        currentArabicSize -= 2;
+        currentEnglishSize -= 0.1;
+        arabicParagraph.style.fontSize = currentArabicSize + 'px';
+        englishParagraph.style.fontSize = currentEnglishSize + 'rem';
+    }
+});
+
+// 7. التحكم في سرعة الصوت
+const speedButtons = document.querySelectorAll('.speed-btn');
+speedButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        speedButtons.forEach(btn => btn.classList.remove('active'));
+        e.target.classList.add('active');
+        currentSpeechSpeed = parseFloat(e.target.getAttribute('data-speed'));
+        if (window.speechSynthesis.speaking) {
+            playAudio();
+        }
+    });
+});
+
+// 8. أحداث البحث والاستماع
 searchBtn.addEventListener('click', () => {
     const verseNum = verseInput.value;
-    // التحقق من صحة الرقم (سورة البقرة: 1 إلى 286)
     if (verseNum && verseNum > 0 && verseNum <= 286) {
         fetchVerseData(verseNum);
     } else {
@@ -118,17 +182,11 @@ searchBtn.addEventListener('click', () => {
 
 playAudioBtn.addEventListener('click', playAudio);
 
-// =========================================================================
-// 6. إعدادات تطبيق الويب التقدمي (Service Worker للعمل بدون إنترنت)
-// =========================================================================
+// 9. تسجيل Service Worker للـ PWA
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('js/service-worker.js')
-      .then(registration => {
-        console.log('تم تسجيل Service Worker بنجاح.');
-      })
-      .catch(error => {
-        console.log('فشل تسجيل Service Worker:', error);
-      });
+    navigator.serviceWorker.register('js/service-worker.js').catch(error => {
+        console.log('Service Worker error:', error);
+    });
   });
 }
