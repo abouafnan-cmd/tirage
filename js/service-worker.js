@@ -1,4 +1,4 @@
-const CACHE_NAME = 'quran-english-edu-v1';
+const CACHE_NAME = 'quran-english-edu-v2';
 const urlsToCache = [
   '/',
   '/index.html',
