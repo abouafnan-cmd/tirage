@@ -1,0 +1,27 @@
+[
+  {
+    "verse_number": 1,
+    "arabic_text": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nالم",
+    "english_translation": "Alif-Lam-Mim. [These letters are one of the miracles of the Qur'an and none but Allah (Alone) knows their meanings].",
+    "linguistic_notes": {
+      "vocabulary": [
+        {"word": "Miracles", "meaning": "معجزات (مفردها Miracle)"},
+        {"word": "None but Allah", "meaning": "لا أحد سوى الله"}
+      ],
+      "grammar": "تم استخدام كلمة (These) للإشارة إلى الحروف لأنها جمع، ولو كانت حرفاً واحداً لتم استخدام (This)."
+    }
+  },
+  {
+    "verse_number": 2,
+    "arabic_text": "ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِلْمُتَّقِينَ",
+    "english_translation": "This is the Book (the Qur'an), whereof there is no doubt, a guidance to those who are Al-Muttaqun (the pious and righteous persons).",
+    "linguistic_notes": {
+      "vocabulary": [
+        {"word": "Doubt", "meaning": "شك / ريب (حرف b يُكتب ولا يُنطق)"},
+        {"word": "Guidance", "meaning": "هدى / إرشاد"},
+        {"word": "Righteous", "meaning": "صالح / مستقيم"}
+      ],
+      "grammar": "كلمة (Whereof) هي كلمة مركبة قديمة تُستخدم في النصوص الرسمية والدينية وتعني (الذي منه أو فيه)."
+    }
+  }
+]

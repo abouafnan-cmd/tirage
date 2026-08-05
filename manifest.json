@@ -1,0 +1,24 @@
+{
+  "name": "تعلم الإنجليزية من القرآن",
+  "short_name": "إنجليزي - قرآن",
+  "description": "منصة لتعلم اللغة الإنجليزية عبر ترجمة معاني سورة البقرة وتأمل الإضاءات اللغوية.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f4f7f6",
+  "theme_color": "#2c3e50",
+  "orientation": "portrait",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

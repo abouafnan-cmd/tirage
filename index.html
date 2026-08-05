@@ -3,85 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>القرعة العشوائية - الصفحة الرئيسية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>تعلم الإنجليزية - سورة البقرة</title>
+    <!-- ربط ملف التنسيقات -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- ربط ملف الـ Manifest لاحقاً -->
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
+
     <div class="container">
         <header>
-            <h1 class="floating">🎲 تطبيق القرعة العشوائية 🎲</h1>
-            <p class="subtitle">أداة متكاملة لإدارة الأسماء والمواضيع وإجراء السحوبات العشوائية</p>
+            <h1>سورة البقرة - تعلم الإنجليزية</h1>
+            <p>أدخل رقم الآية لعرض الترجمة (تقي الدين الهلالي ومحسن خان)</p>
         </header>
 
-        <div class="main-content">
-            <div class="cards-grid">
-                <div class="card" onclick="location.href='control-panel.html'">
-                    <div class="card-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>لوحة التحكم</h3>
-                    <p>إدارة الأسماء والمواضيع والمجموعات</p>
-                    <div class="card-arrow">
-                        <i class="fas fa-arrow-left"></i>
-                    </div>
-                </div>
+        <section class="search-section">
+            <input type="number" id="verse-input" placeholder="أدخل رقم الآية (مثال: 2)" min="1" max="286">
+            <button id="search-btn">ابحث عن الآية</button>
+        </section>
 
-                <div class="card" onclick="location.href='lottery.html'">
-                    <div class="card-icon">
-                        <i class="fas fa-random"></i>
-                    </div>
-                    <h3>صفحة القرعة</h3>
-                    <p>إجراء السحوبات العشوائية وعرض النتائج</p>
-                    <div class="card-arrow">
-                        <i class="fas fa-arrow-left"></i>
-                    </div>
-                </div>
+        <!-- هذه المنطقة ستكون مخفية حتى يتم البحث -->
+        <main id="result-container" class="hidden">
+            <div class="card quran-text">
+                <h3>النص القرآني:</h3>
+                <p id="arabic-text"></p>
             </div>
 
-            <div class="features">
-                <h2>المميزات الرئيسية</h2>
-                <div class="features-grid">
-                    <div class="feature">
-                        <i class="fas fa-users"></i>
-                        <h4>إدارة الأسماء</h4>
-                        <p>إضافة وحذف وتنظيم الأسماء في مجموعات</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-book"></i>
-                        <h4>إدارة المواضيع</h4>
-                        <p>تنظيم المواضيع في مجموعات مختلفة</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-file-import"></i>
-                        <h4>استيراد البيانات</h4>
-                        <p>استيراد الأسماء والمواضيع من ملفات مختلفة</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-chart-bar"></i>
-                        <h4>إحصائيات مفصلة</h4>
-                        <p>عرض إحصائيات عن البيانات والتركيبات</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-history"></i>
-                        <h4>سجل السحوبات</h4>
-                        <p>تسجيل كامل لجميع السحوبات السابقة</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-mobile-alt"></i>
-                        <h4>تصميم متجاوب</h4>
-                        <p>يعمل على جميع الأجهزة والشاشات</p>
-                    </div>
-                </div>
+            <div class="card translation-text">
+                <h3>الترجمة الإنجليزية:</h3>
+                <p id="english-text" dir="ltr"></p>
+                <button id="play-audio-btn">🔊 استمع للترجمة</button>
             </div>
-        </div>
 
-        <footer>
-            <p>تم التطوير باستخدام HTML, CSS, JavaScript</p>
-        </footer>
+            <div class="card linguistic-notes">
+                <h3>إضاءات لغوية:</h3>
+                <div id="grammar-note"></div>
+                <h4>أهم المفردات:</h4>
+                <ul id="vocabulary-list"></ul>
+            </div>
+        </main>
     </div>
 
-    <script src="js/main.js"></script>
+    <!-- ربط ملف البرمجة -->
+    <script src="js/app.js"></script>
 </body>
 </html>
