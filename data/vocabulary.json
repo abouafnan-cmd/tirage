@@ -1,0 +1,572 @@
+{
+  "verse_1": [
+    {"word": "Miracles", "meaning": "مُعْجِزَات (مفردها Miracle)"}
+  ],
+  "verse_2": [
+    {"word": "Doubt", "meaning": "شَكّ / رَيْب (حرف b صامت لا يُنطق)"},
+    {"word": "Guidance", "meaning": "هُدًى / إِرْشَاد"},
+    {"word": "Pious", "meaning": "تَقِيّ / صَالِح (استُخدمت هنا بمعنى المتقين)"}
+  ],
+  "verse_3": [
+    {"word": "Unseen", "meaning": "الغَيْب (ما لا يُرى بالعين)"},
+    {"word": "Perform", "meaning": "يُقِيم / يُؤَدِّي (فعل)"},
+    {"word": "Provide", "meaning": "يَرْزُق / يُزَوِّد"}
+  ],
+  "verse_4": [
+    {"word": "Revealed", "meaning": "أُنْزِلَ / أُوحِيَ"},
+    {"word": "Certainty", "meaning": "يَقِين / تَأَكُّد"},
+    {"word": "Hereafter", "meaning": "الآخِرَة"}
+  ],
+  "verse_5": [
+    {"word": "Successful", "meaning": "مُفْلِحُونَ / نَاجِحُونَ (صفة)"}
+  ],
+  "verse_6": [
+    {"word": "Disbelieve", "meaning": "يَكْفُر / يَجْحَد"},
+    {"word": "Warn", "meaning": "يُنْذِر / يُحَذِّر"}
+  ],
+  "verse_7": [
+    {"word": "Seal", "meaning": "خَتْم / طَبْع"},
+    {"word": "Hearing", "meaning": "سَمْع / حاسّة السمع"},
+    {"word": "Covering", "meaning": "غِشَاوَة / غِطَاء"},
+    {"word": "Torment", "meaning": "عَذَاب"}
+  ],
+  "verse_8": [
+    {"word": "Mankind", "meaning": "النَّاس / البَشَرِيَّة"},
+    {"word": "Hypocrites", "meaning": "مُنَافِقُونَ"}
+  ],
+  "verse_9": [
+    {"word": "Deceive", "meaning": "يُخَادِع / يَخْدَع"},
+    {"word": "Perceive", "meaning": "يَشْعُر / يُدْرِك"}
+  ],
+  "verse_10": [
+    {"word": "Disease", "meaning": "مَرَض / عِلَّة"},
+    {"word": "Painful", "meaning": "أَلِيم / مُوجِع"}
+  ],
+  "verse_11": [
+    {"word": "Mischief", "meaning": "فَسَاد / إِفْسَاد"},
+    {"word": "Peace-makers", "meaning": "مُصْلِحُونَ"}
+  ],
+  "verse_12": [
+    {"word": "Verily", "meaning": "أَلَا / حَقًّا (تُستخدم للتوكيد)"}
+  ],
+  "verse_13": [
+    {"word": "Fools", "meaning": "سُفَهَاء (مفردها Fool)"}
+  ],
+  "verse_14": [
+    {"word": "Meet", "meaning": "يَلْقَى / يُقَابِل"},
+    {"word": "Alone", "meaning": "خَلَوْا / انْفَرَدُوا"},
+    {"word": "Mocking", "meaning": "مُسْتَهْزِئُونَ"}
+  ],
+  "verse_15": [
+    {"word": "Mocks", "meaning": "يَسْتَهْزِئ"},
+    {"word": "Wander blindly", "meaning": "يَعْمَهُونَ (يتخبطون في العمى)"}
+  ],
+  "verse_16": [
+    {"word": "Purchased", "meaning": "اشْتَرَوا"},
+    {"word": "Commerce", "meaning": "تِجَارَة"},
+    {"word": "Profitless", "meaning": "خَاسِرَة / غَيْر مُرْبِحَة"}
+  ],
+  "verse_17": [
+    {"word": "Likeness", "meaning": "مَثَل / شَبَه"},
+    {"word": "Kindled", "meaning": "اسْتَوْقَدَ / أَشْعَلَ"},
+    {"word": "Darkness", "meaning": "ظُلُمَات (مفردها Dark)"}
+  ],
+  "verse_18": [
+    {"word": "Deaf", "meaning": "صُمّ / أَصَمّ"},
+    {"word": "Dumb", "meaning": "بُكْم / أَبْكَم"},
+    {"word": "Blind", "meaning": "عُمْي / أَعْمَى"}
+  ],
+  "verse_19": [
+    {"word": "Rainstorm", "meaning": "صَيِّب / عَاصِفَة مَطَرِيَّة"},
+    {"word": "Thunder", "meaning": "رَعْد"},
+    {"word": "Lightning", "meaning": "بَرْق"}
+  ],
+  "verse_20": [
+    {"word": "Snatches away", "meaning": "يَخْطَف"},
+    {"word": "Sight", "meaning": "أَبْصَار / بَصَر"},
+    {"word": "Stand still", "meaning": "قَامُوا / وَقَفُوا ثَابِتِينَ"}
+  ],
+  "verse_21": [
+    {"word": "Worship", "meaning": "يَعْبُد / اعْبُدُوا"},
+    {"word": "Created", "meaning": "خَلَقَ"}
+  ],
+  "verse_22": [
+    {"word": "Resting place", "meaning": "فِرَاشًا / مَهْدًا"},
+    {"word": "Canopy", "meaning": "بِنَاءً / سَقْفًا"},
+    {"word": "Rivals", "meaning": "أَنْدَادًا (أنداد: نظراء أو شركاء)"}
+  ],
+  "verse_23": [
+    {"word": "Doubt", "meaning": "رَيْب / شَكّ"},
+    {"word": "Produce", "meaning": "أَنْتِجُوا / فَأْتُوا بِـ"},
+    {"word": "Witnesses", "meaning": "شُهَدَاء / أَنْصَار (مفردها Witness)"}
+  ],
+  "verse_24": [
+    {"word": "Fuel", "meaning": "وَقُود"},
+    {"word": "Stones", "meaning": "حِجَارَة (مفردها Stone)"},
+    {"word": "Prepared", "meaning": "أُعِدَّتْ / جُهِّزَتْ"}
+  ],
+  "verse_25": [
+    {"word": "Glad tidings", "meaning": "بُشْرَى / أَخْبَار سَارَّة"},
+    {"word": "Righteous deeds", "meaning": "الصَّالِحَات / الأَعْمَال الصَّالِحَة"},
+    {"word": "Purified", "meaning": "مُطَهَّرَة"}
+  ],
+  "verse_26": [
+    {"word": "Ashamed", "meaning": "يَسْتَحْيِي / يَخْجَل"},
+    {"word": "Mosquito", "meaning": "بَعُوضَة"},
+    {"word": "Misleads", "meaning": "يُضِلُّ"}
+  ],
+  "verse_27": [
+    {"word": "Break", "meaning": "يَنْقُضُونَ / يَكْسِرُونَ"},
+    {"word": "Covenant", "meaning": "عَهْد / مِيثَاق"},
+    {"word": "Sever", "meaning": "يَقْطَعُونَ / يَفْصِلُونَ"}
+  ],
+  "verse_28": [
+    {"word": "Death", "meaning": "مَوْت"},
+    {"word": "Life", "meaning": "حَيَاة"},
+    {"word": "Return", "meaning": "تُرْجَعُونَ / تَعُودُونَ"}
+  ],
+  "verse_29": [
+    {"word": "Heaven", "meaning": "سَمَاء"},
+    {"word": "Seven", "meaning": "سَبْع"},
+    {"word": "All-Knower", "meaning": "عَلِيم"}
+  ],
+  "verse_30": [
+    {"word": "Generations", "meaning": "أَجْيَال / خَلَائِف"},
+    {"word": "Shed blood", "meaning": "يَسْفِكُ الدِّمَاءَ"},
+    {"word": "Glorify", "meaning": "نُسَبِّحُ"}
+  ],
+  "verse_31": [
+    {"word": "Taught", "meaning": "عَلَّمَ (الماضي من فعل Teach)"},
+    {"word": "Names", "meaning": "أَسْمَاء (مفردها Name)"}
+  ],
+  "verse_32": [
+    {"word": "Glory", "meaning": "سُبْحَانَ / مَجْد"},
+    {"word": "Knowledge", "meaning": "عِلْم / مَعْرِفَة"}
+  ],
+  "verse_33": [
+    {"word": "Inform", "meaning": "أَنْبِئْ / أَخْبِرْ"},
+    {"word": "Unseen", "meaning": "الغَيْب"},
+    {"word": "Concealing", "meaning": "تَكْتُمُونَ / تُخْفُونَ"}
+  ],
+  "verse_34": [
+    {"word": "Prostrate", "meaning": "اسْجُدُوا"},
+    {"word": "Refused", "meaning": "أَبَى / رَفَضَ"},
+    {"word": "Proud", "meaning": "اسْتَكْبَرَ / مُتَكَبِّر"}
+  ],
+  "verse_35": [
+    {"word": "Dwell", "meaning": "اسْكُنْ / أَقِمْ"},
+    {"word": "Freely", "meaning": "رَغَدًا / بِحُرِّيَّة"},
+    {"word": "Approach", "meaning": "تَقْرَبَا / تَقْتَرِبَا"}
+  ],
+  "verse_36": [
+    {"word": "Slip", "meaning": "أَزَلَّهُمَا / أَوْقَعَهُمَا فِي الخَطَأ"},
+    {"word": "Enmity", "meaning": "عَدَاوَة"},
+    {"word": "Dwelling place", "meaning": "مُسْتَقَرّ / مَكَان إِقَامَة"}
+  ],
+  "verse_37": [
+    {"word": "Received", "meaning": "فَتَلَقَّى / اسْتَلَمَ"},
+    {"word": "Pardoned", "meaning": "تَابَ عَلَيْهِ / عَفَا عَنْهُ"}
+  ],
+  "verse_38": [
+    {"word": "Guidance", "meaning": "هُدًى / تَوْجِيه"},
+    {"word": "Fear", "meaning": "خَوْف"},
+    {"word": "Grieve", "meaning": "يَحْزَنُونَ"}
+  ],
+  "verse_39": [
+    {"word": "Belie", "meaning": "كَذَّبُوا / أَنْكَرُوا"},
+    {"word": "Dwellers", "meaning": "أَصْحَاب / سُكَّان"},
+    {"word": "Abide", "meaning": "خَالِدُونَ / يَبْقُونَ"}
+  ],
+  "verse_40": [
+    {"word": "Favour", "meaning": "نِعْمَة / فَضْل"},
+    {"word": "Fulfil", "meaning": "أَوْفُوا / أَنْجِزُوا"}
+  ],
+  "verse_41": [
+    {"word": "Confirming", "meaning": "مُصَدِّقًا / مُؤَكِّدًا"},
+    {"word": "Price", "meaning": "ثَمَنًا / سِعْر"}
+  ],
+  "verse_42": [
+    {"word": "Mix", "meaning": "تَلْبِسُوا / تَخْلِطُوا"},
+    {"word": "Falsehood", "meaning": "بَاطِل / زَيْف"},
+    {"word": "Conceal", "meaning": "تَكْتُمُوا / تُخْفُوا"}
+  ],
+  "verse_43": [
+    {"word": "Bow down", "meaning": "ارْكَعُوا"}
+  ],
+  "verse_44": [
+    {"word": "Enjoin", "meaning": "أَتَأْمُرُونَ / تَفْرِضُونَ"},
+    {"word": "Forget", "meaning": "تَنْسَوْنَ"},
+    {"word": "Sense", "meaning": "تَعْقِلُونَ / إِدْرَاك"}
+  ],
+  "verse_45": [
+    {"word": "Seek help", "meaning": "اسْتَعِينُوا"},
+    {"word": "Patience", "meaning": "صَبْر"},
+    {"word": "Heavy", "meaning": "كَبِيرَة / شَاقَّة"}
+  ],
+  "verse_46": [
+    {"word": "Certain", "meaning": "مُتَيَقِّنُونَ / يَظُنُّونَ (بمعنى اليقين)"},
+    {"word": "Meet", "meaning": "مُلَاقُو / يُقَابِل"}
+  ],
+  "verse_47": [
+    {"word": "Preferred", "meaning": "فَضَّلْتُكُمْ"}
+  ],
+  "verse_48": [
+    {"word": "Avail", "meaning": "تَجْزِي / يَنْفَع"},
+    {"word": "Intercession", "meaning": "شَفَاعَة"},
+    {"word": "Compensation", "meaning": "عَدْل / فِدْيَة"}
+  ],
+  "verse_49": [
+    {"word": "Delivered", "meaning": "نَجَّيْنَاكُمْ / أَنْقَذْنَاكُمْ"},
+    {"word": "Afflicting", "meaning": "يَسُومُونَكُمْ / يُذِيقُونَكُمْ"},
+    {"word": "Trial", "meaning": "بَلَاء / اخْتِبَار"}
+  ],
+  "verse_50": [
+    {"word": "Separated", "meaning": "فَرَقْنَا / فَصَلْنَا"},
+    {"word": "Drowned", "meaning": "أَغْرَقْنَا"}
+  ],
+"verse_51": [
+    {"word": "Appointed", "meaning": "وَاعَدْنَا / حَدَّدْنَا مَوْعِدًا"},
+    {"word": "Calf", "meaning": "العِجْل"}
+  ],
+  "verse_52": [
+    {"word": "Forgave", "meaning": "عَفَوْنَا / سَامَحْنَا"},
+    {"word": "Grateful", "meaning": "تَشْكُرُونَ / شَاكِرُونَ"}
+  ],
+  "verse_53": [
+    {"word": "Scripture", "meaning": "الكِتَاب"},
+    {"word": "Criterion", "meaning": "الفُرْقَان (مَا يُفَرِّقُ بَيْنَ الحَقِّ وَالبَاطِلِ)"}
+  ],
+  "verse_54": [
+    {"word": "Creator", "meaning": "بَارِئِكُمْ / الخَالِق"},
+    {"word": "Innocent", "meaning": "البَرِيء (خَالٍ مِنَ الذَّنْبِ)"}
+  ],
+  "verse_55": [
+    {"word": "Plainly", "meaning": "جَهْرَةً / بِوُضُوح"},
+    {"word": "Thunder-bolt", "meaning": "الصَّاعِقَة"}
+  ],
+  "verse_56": [
+    {"word": "Raised you up", "meaning": "بَعَثْنَاكُمْ / أَحْيَيْنَاكُمْ"}
+  ],
+  "verse_57": [
+    {"word": "Shaded", "meaning": "ظَلَّلْنَا"},
+    {"word": "Clouds", "meaning": "الغَمَام (مفردها Cloud)"},
+    {"word": "Quails", "meaning": "السَّلْوَى (طَائِرُ السُّمانَى)"}
+  ],
+  "verse_58": [
+    {"word": "Bountifully", "meaning": "رَغَدًا / بِوَفْرَة"},
+    {"word": "Gate", "meaning": "البَاب"},
+    {"word": "Prostration", "meaning": "سُجَّدًا"}
+  ],
+  "verse_59": [
+    {"word": "Changed", "meaning": "بَدَّلَ / غَيَّرَ"},
+    {"word": "Rebelling", "meaning": "يَفْسُقُونَ / يَتَمَرَّدُونَ"}
+  ],
+  "verse_60": [
+    {"word": "Strike", "meaning": "اضْرِبْ"},
+    {"word": "Stick", "meaning": "عَصَاكَ"},
+    {"word": "Springs", "meaning": "عَيْنًا / يَنَابِيع (مفردها Spring)"}
+  ],
+  "verse_61": [
+    {"word": "Endure", "meaning": "نَصْبِرَ / نَتَحَمَّل"},
+    {"word": "Herbs", "meaning": "بَقْلِهَا / أَعْشَاب"},
+    {"word": "Misery", "meaning": "المَسْكَنَة / الشَّقَاء"}
+  ],
+  "verse_62": [
+    {"word": "Reward", "meaning": "أَجْرُهُمْ / مُكَافَأَة"},
+    {"word": "Grieve", "meaning": "يَحْزَنُونَ"}
+  ],
+  "verse_63": [
+    {"word": "Hold fast", "meaning": "خُذُوا بِقُوَّة / تَمَسَّكُوا"}
+  ],
+  "verse_64": [
+    {"word": "Turned away", "meaning": "تَوَلَّيْتُمْ / أَعْرَضْتُمْ"},
+    {"word": "Grace", "meaning": "فَضْل"}
+  ],
+  "verse_65": [
+    {"word": "Transgressed", "meaning": "اعْتَدَوْا / تَجَاوَزُوا الحُدُود"},
+    {"word": "Monkeys", "meaning": "قِرَدَة"},
+    {"word": "Despised", "meaning": "خَاسِئِينَ / مُحْتَقَرِينَ"}
+  ],
+  "verse_66": [
+    {"word": "Example", "meaning": "نَكَالًا / عِبْرَة"},
+    {"word": "Succeeding", "meaning": "مَا خَلْفَهَا / اللَّاحِقَة"}
+  ],
+  "verse_67": [
+    {"word": "Slaughter", "meaning": "تَذْبَحُوا"},
+    {"word": "Ignorant", "meaning": "الجَاهِلِينَ"}
+  ],
+  "verse_68": [
+    {"word": "Make plain", "meaning": "يُبَيِّن / يُوَضِّح"},
+    {"word": "Conditions", "meaning": "حَالَات / ظُرُوف"}
+  ],
+  "verse_69": [
+    {"word": "Bright", "meaning": "فَاقِعٌ / مُشْرِق"},
+    {"word": "Pleasing", "meaning": "تَسُرُّ / تُرْضِي"},
+    {"word": "Beholders", "meaning": "النَّاظِرِينَ"}
+  ],
+  "verse_70": [
+    {"word": "Alike", "meaning": "تَشَابَهَ / مُتَشَابِهَة"}
+  ],
+  "verse_71": [
+    {"word": "Trained", "meaning": "ذَلُولٌ / مُدَرَّبَة"},
+    {"word": "Till", "meaning": "تُثِيرُ (تَحْرُثُ الأَرْضَ)"},
+    {"word": "Sound", "meaning": "مُسَلَّمَةٌ / سَلِيمَة"}
+  ],
+  "verse_72": [
+    {"word": "Crime", "meaning": "جَرِيمَة (في سياق القتل)"},
+    {"word": "Dispute", "meaning": "فَادَّارَأْتُمْ / تَنَازَعْتُمْ"},
+    {"word": "Hiding", "meaning": "تَكْتُمُونَ"}
+  ],
+  "verse_73": [
+    {"word": "Piece", "meaning": "بِبَعْضِهَا / قِطْعَة"},
+    {"word": "Understand", "meaning": "تَعْقِلُونَ / تَفْهَمُونَ"}
+  ],
+  "verse_74": [
+    {"word": "Hardened", "meaning": "قَسَتْ / أَصْبَحَتْ صُلْبَة"},
+    {"word": "Stones", "meaning": "الحِجَارَة"},
+    {"word": "Split asunder", "meaning": "يَشَّقَّقُ / يَنْفَلِق"}
+  ],
+  "verse_75": [
+    {"word": "Covet", "meaning": "أَفَتَطْمَعُونَ / تَرْغَبُونَ بِشِدَّة"},
+    {"word": "Knowingly", "meaning": "وَهُمْ يَعْلَمُونَ / عَنْ عَمْد"}
+  ],
+  "verse_76": [
+    {"word": "Private", "meaning": "خَلَا / انْفَرَدَ"},
+    {"word": "Argue", "meaning": "لِيُحَاجُّوكُمْ / يُجَادِلُوكُمْ"}
+  ],
+  "verse_77": [
+    {"word": "Conceal", "meaning": "يُسِرُّونَ / يُخْفُونَ"},
+    {"word": "Reveal", "meaning": "يُعْلِنُونَ / يُظْهِرُونَ"}
+  ],
+  "verse_78": [
+    {"word": "Unlettered", "meaning": "أُمِّيُّونَ (لَا يَقْرَؤُونَ وَلَا يَكْتُبُونَ)"},
+    {"word": "Guess", "meaning": "يَظُنُّونَ / يُخَمِّنُونَ"}
+  ],
+  "verse_79": [
+    {"word": "Woe", "meaning": "فَوَيْلٌ / هَلَاك"},
+    {"word": "Purchase", "meaning": "لِيَشْتَرُوا"},
+    {"word": "Earn", "meaning": "يَكْسِبُونَ"}
+  ],
+  "verse_80": [
+    {"word": "Numbered", "meaning": "مَعْدُودَة"}
+  ],
+"verse_81": [
+    {"word": "Earns", "meaning": "كَسَبَ / يَكْسِبُ"},
+    {"word": "Surrounded", "meaning": "أَحَاطَتْ"}
+  ],
+  "verse_83": [
+    {"word": "Kindred", "meaning": "ذِي الْقُرْبَى / الْأَقَارِبِ"},
+    {"word": "Orphans", "meaning": "الْيَتَامَى (مفردها Orphan)"}
+  ],
+  "verse_84": [
+    {"word": "Shed", "meaning": "تَسْفِكُونَ (تُرِيقُونَ الدِّمَاءَ)"},
+    {"word": "Dwellings", "meaning": "دِيَارِكُمْ / مَسَاكِنِكُمْ"}
+  ],
+  "verse_85": [
+    {"word": "Captives", "meaning": "أُسَارَى (مفردها Captive)"},
+    {"word": "Ransom", "meaning": "تُفَادُوهُمْ / فِدْيَة"},
+    {"word": "Disgrace", "meaning": "خِزْيٌ / عَارٌ"}
+  ],
+  "verse_86": [
+    {"word": "Bought", "meaning": "اشْتَرَوُا"},
+    {"word": "Lightened", "meaning": "يُخَفَّفُ"}
+  ],
+  "verse_87": [
+    {"word": "Succession", "meaning": "قَفَّيْنَا / تَتَابُع"},
+    {"word": "Arrogant", "meaning": "اسْتَكْبَرْتُمْ / مُتَكَبِّرُونَ"}
+  ],
+  "verse_88": [
+    {"word": "Wrapped", "meaning": "غُلْفٌ / مُغَلَّفَةٌ"},
+    {"word": "Cursed", "meaning": "لَعَنَهُمُ"}
+  ],
+  "verse_89": [
+    {"word": "Confirming", "meaning": "مُصَدِّقٌ"},
+    {"word": "Aforetime", "meaning": "مِنْ قَبْلُ / سَابِقًا"}
+  ],
+  "verse_90": [
+    {"word": "Grudging", "meaning": "بَغْيًا / حَسَدًا"},
+    {"word": "Wrath", "meaning": "غَضَبٌ"}
+  ],
+  "verse_93": [
+    {"word": "Absorbed", "meaning": "أُشْرِبُوا (تَشَرَّبَتْ قُلُوبُهُمْ)"}
+  ],
+  "verse_94": [
+    {"word": "Specially", "meaning": "خَالِصَةً / خَاصَّةً"},
+    {"word": "Long for", "meaning": "فَتَمَنَّوُا / يَشْتَاقُونَ إِلَى"}
+  ],
+  "verse_96": [
+    {"word": "Greediest", "meaning": "أَحْرَصَ (صِيغَةُ مُبَالَغَةٍ وَتَفْضِيلٍ)"}
+  ],
+  "verse_102": [
+    {"word": "Magic", "meaning": "السِّحْرَ"},
+    {"word": "Separation", "meaning": "يُفَرِّقُونَ / انْفِصَال"}
+  ],
+  "verse_104": [
+    {"word": "Understand", "meaning": "انْظُرْنَا / افْهَمْنَا"}
+  ],
+  "verse_106": [
+    {"word": "Abrogate", "meaning": "نَنْسَخْ / نُلْغِي"},
+    {"word": "Forgotten", "meaning": "نُنْسِهَا"}
+  ],
+  "verse_109": [
+    {"word": "Envy", "meaning": "حَسَدًا"},
+    {"word": "Forgive", "meaning": "فَاعْفُوا"},
+    {"word": "Overlook", "meaning": "اصْفَحُوا / تَجَاوَزُوا"}
+  ],
+  "verse_112": [
+    {"word": "Submits", "meaning": "أَسْلَمَ / خَضَعَ"},
+    {"word": "Reward", "meaning": "أَجْرُهُ"}
+  ],
+  "verse_114": [
+    {"word": "Forbid", "meaning": "مَنَعَ"},
+    {"word": "Ruin", "meaning": "خَرَابِهَا / تَدْمِيرِهَا"}
+  ],
+  "verse_115": [
+    {"word": "East", "meaning": "الْمَشْرِقُ"},
+    {"word": "West", "meaning": "الْمَغْرِبُ"}
+  ],
+  "verse_120": [
+    {"word": "Pleased", "meaning": "تَرْضَى"}
+  ],
+  "verse_124": [
+    {"word": "Tried", "meaning": "ابْتَلَى / اخْتَبَرَ"},
+    {"word": "Leader", "meaning": "إِمَامًا / قَائِدًا"}
+  ],
+  "verse_125": [
+    {"word": "Resort", "meaning": "مَثَابَةً / مَرْجِعًا"},
+    {"word": "Safety", "meaning": "أَمْنًا"}
+  ],
+  "verse_127": [
+    {"word": "Foundations", "meaning": "الْقَوَاعِدَ (مفردها Foundation)"}
+  ],
+  "verse_138": [
+    {"word": "Religion", "meaning": "صِبْغَةَ (الدِّينَ أَوِ الْفِطْرَةَ)"}
+  ],
+  "verse_142": [
+    {"word": "Fools", "meaning": "السُّفَهَاءُ"}
+  ],
+  "verse_143": [
+    {"word": "Just", "meaning": "وَسَطًا / عَدْلًا"},
+    {"word": "Witnesses", "meaning": "شُهَدَاءَ"}
+  ],
+  "verse_144": [
+    {"word": "Turning", "meaning": "تَقَلُّبَ"},
+    {"word": "Direction", "meaning": "شَطْرَ / وِجْهَةَ"}
+  ],
+  "verse_148": [
+    {"word": "Hasten", "meaning": "فَاسْتَبِقُوا / أَسْرِعُوا"}
+  ],
+  "verse_150": [
+    {"word": "Argument", "meaning": "حُجَّةٌ / بُرْهَانٌ"}
+  ],
+"verse_151": [
+    {"word": "Purifying", "meaning": "يُزَكِّيكُمْ / يُطَهِّرُكُمْ[cite: 1, 2]"},
+    {"word": "Wisdom", "meaning": "الْحِكْمَةَ[cite: 1, 2]"}
+  ],
+  "verse_152": [
+    {"word": "Remember", "meaning": "فَاذْكُرُونِي[cite: 1, 2]"},
+    {"word": "Grateful", "meaning": "وَاشْكُرُوا / شَاكِرُونَ[cite: 1, 2]"}
+  ],
+  "verse_153": [
+    {"word": "Patience", "meaning": "بِالصَّبْرِ[cite: 1, 2]"}
+  ],
+  "verse_154": [
+    {"word": "Dead", "meaning": "أَمْوَاتٌ[cite: 1, 2]"},
+    {"word": "Living", "meaning": "أَحْيَاءٌ[cite: 1, 2]"},
+    {"word": "Perceive", "meaning": "تَشْعُرُونَ / تُدْرِكُونَ[cite: 1, 2]"}
+  ],
+  "verse_155": [
+    {"word": "Test", "meaning": "وَلَنَبْلُوَنَّكُمْ / نَخْتَبِرَنَّكُمْ[cite: 1, 2]"},
+    {"word": "Hunger", "meaning": "الْجُوعِ[cite: 1, 2]"}
+  ],
+  "verse_156": [
+    {"word": "Afflicted", "meaning": "أَصَابَتْهُمْ[cite: 1, 2]"},
+    {"word": "Calamity", "meaning": "مُصِيبَةٌ / كَارِثَةٌ[cite: 1, 2]"}
+  ],
+  "verse_157": [
+    {"word": "Blessed", "meaning": "صَلَوَاتٌ / مُبَارَكُونَ[cite: 1, 2]"},
+    {"word": "Mercy", "meaning": "رَحْمَةٌ[cite: 1, 2]"}
+  ],
+  "verse_158": [
+    {"word": "Symbols", "meaning": "شَعَائِرِ (مفردها Symbol)[cite: 1, 2]"}
+  ],
+  "verse_159": [
+    {"word": "Conceal", "meaning": "يَكْتُمُونَ / يُخْفُونَ[cite: 1, 2]"}
+  ],
+  "verse_160": [
+    {"word": "Repent", "meaning": "تَابُوا[cite: 1, 2]"},
+    {"word": "Amend", "meaning": "أَصْلَحُوا[cite: 1, 2]"}
+  ],
+  "verse_164": [
+    {"word": "Alternation", "meaning": "اخْتِلَافِ / تَعَاقُبِ[cite: 1, 2]"},
+    {"word": "Ships", "meaning": "الْفُلْكِ / السُّفُنِ[cite: 1, 2]"}
+  ],
+  "verse_165": [
+    {"word": "Rivals", "meaning": "أَنْدَادًا / شُرَكَاءَ[cite: 1, 2]"}
+  ],
+  "verse_168": [
+    {"word": "Lawful", "meaning": "حَلَالًا[cite: 1, 2]"},
+    {"word": "Footsteps", "meaning": "خُطُوَاتِ[cite: 1, 2]"}
+  ],
+  "verse_169": [
+    {"word": "Evil", "meaning": "بِالسُّوءِ / الشَّرِّ[cite: 1, 2]"}
+  ],
+  "verse_171": [
+    {"word": "Shouts", "meaning": "يَنْعِقُ / يَصِيحُ[cite: 1, 2]"}
+  ],
+  "verse_173": [
+    {"word": "Forbidden", "meaning": "حَرَّمَ[cite: 1, 2]"},
+    {"word": "Necessity", "meaning": "اضْطُرَّ / ضَرُورَةٌ[cite: 1, 2]"}
+  ],
+  "verse_177": [
+    {"word": "Piety", "meaning": "الْبِرَّ / التَّقْوَى[cite: 1, 2]"},
+    {"word": "Wayfarer", "meaning": "وَابْنَ السَّبِيلِ / الْمُسَافِرَ[cite: 1, 2]"}
+  ],
+  "verse_178": [
+    {"word": "Murder", "meaning": "الْقَتْلَى / الْقَتْلِ[cite: 1, 2]"},
+    {"word": "Alleviation", "meaning": "تَخْفِيفٌ[cite: 1, 2]"}
+  ],
+  "verse_180": [
+    {"word": "Bequest", "meaning": "الْوَصِيَّةُ[cite: 1, 2]"}
+  ],
+  "verse_183": [
+    {"word": "Fasting", "meaning": "الصِّيَامُ[cite: 1, 2]"}
+  ],
+  "verse_185": [
+    {"word": "Sights", "meaning": "شَهِدَ / رَأَى[cite: 1, 2]"},
+    {"word": "Difficult", "meaning": "الْعُسْرَ / الصُّعُوبَةَ[cite: 1, 2]"}
+  ],
+  "verse_186": [
+    {"word": "Respond", "meaning": "أُجِيبُ[cite: 1, 2]"},
+    {"word": "Supplicant", "meaning": "الدَّاعِ[cite: 1, 2]"}
+  ],
+  "verse_187": [
+    {"word": "Dawn", "meaning": "الْفَجْرِ[cite: 1, 2]"},
+    {"word": "Strictly", "meaning": "حُدُودُ / بِصَرَامَةٍ[cite: 1, 2]"}
+  ],
+  "verse_188": [
+    {"word": "Bribery", "meaning": "تُدْلُوا بِهَا (رِشْوَةً)[cite: 1, 2]"}
+  ],
+  "verse_189": [
+    {"word": "New moons", "meaning": "الْأَهِلَّةِ (مفردها هِلَالٌ)[cite: 1, 2]"}
+  ],
+  "verse_190": [
+    {"word": "Transgress", "meaning": "تَعْتَدُوا / تَتَجَاوَزُوا[cite: 1, 2]"}
+  ],
+  "verse_191": [
+    {"word": "Turn out", "meaning": "أَخْرِجُوهُمْ[cite: 1, 2]"}
+  ],
+  "verse_195": [
+    {"word": "Destruction", "meaning": "التَّهْلُكَةِ / الدَّمَارِ[cite: 1, 2]"}
+  ],
+  "verse_196": [
+    {"word": "Shave", "meaning": "تَحْلِقُوا[cite: 1, 2]"},
+    {"word": "Sacrifice", "meaning": "الْهَدْيِ / الْأُضْحِيَّةِ[cite: 1, 2]"}
+  ],
+  "verse_197": [
+    {"word": "Provision", "meaning": "وَتَزَوَّدُوا / زَادٌ[cite: 1, 2]"}
+  ],
+  "verse_200": [
+    {"word": "Forefathers", "meaning": "آبَاءَكُمْ / الْأَجْدَادَ[cite: 1, 2]"}
+  ]
+}

@@ -10,25 +10,49 @@ const vocabularyList = document.getElementById('vocabulary-list');
 
 let currentEnglishText = ""; // متغير لحفظ النص الإنجليزي ليتم نطقه لاحقاً
 
-// دالة لجلب البيانات من ملف JSON
+// دالة لجلب البيانات من ملفي JSON ودمجها برمجياً
 async function fetchVerseData(verseNumber) {
     try {
-        // جلب ملف البيانات (تأكد من أن المسار يطابق هيكلة ملفاتك)
-        const response = await fetch('data/albaqarah.json');
-        const data = await response.json();
+        // 1. جلب ملف النص العربي (تأكد من أن الملف اسمه arabic.json وموجود في مجلد data)
+        const responseAr = await fetch('data/arabic.json');
+        const dataAr = await responseAr.json();
         
-        // البحث عن الآية المطلوبة
-        const verse = data.find(v => v.verse_number === parseInt(verseNumber));
+        // 2. جلب ملف الترجمة الإنجليزية (تأكد من أن الملف اسمه english.json وموجود في مجلد data)
+        const responseEn = await fetch('data/english.json');
+        const dataEn = await responseEn.json();
         
-        if (verse) {
-            displayResults(verse);
+        // 3. بناء المفاتيح البرمجية للبحث حسب هيكلة الملفات
+        const arabicKey = "verse_" + verseNumber;
+        const englishKey = "2:" + verseNumber;
+        
+        // 4. استخراج النصوص
+        const arabicVerse = dataAr.verse[arabicKey];
+        const englishVerse = dataEn[englishKey]?.t;
+        
+        if (arabicVerse && englishVerse) {
+            // تكوين كائن (Object) يتوافق مع دالة العرض الموجودة مسبقاً
+            const verseData = {
+                verse_number: parseInt(verseNumber),
+                arabic_text: arabicVerse,
+                english_translation: englishVerse,
+                linguistic_notes: {
+                    grammar: "هذه مساحة مؤقتة للفوائد النحوية. يمكنك مستقبلاً إنشاء ملف JSON خاص بالإضاءات اللغوية وربطه هنا.",
+                    vocabulary: [
+                        {word: "تنبيه", meaning: "قم بتغذية هذا القسم بالمفردات مستقبلاً لتعزيز الفائدة التعليمية."}
+                    ]
+                }
+            };
+            
+            // إرسال البيانات لدالة العرض
+            displayResults(verseData);
+            
         } else {
-            alert("عذراً، الآية غير متوفرة في قاعدة البيانات الحالية أو الرقم غير صحيح.");
+            alert("عذراً، الآية غير متوفرة أو الرقم غير صحيح.");
             resultContainer.classList.add('hidden');
         }
     } catch (error) {
         console.error("حدث خطأ أثناء جلب البيانات:", error);
-        alert("حدث خطأ أثناء الاتصال بقاعدة البيانات.");
+        alert("حدث خطأ أثناء الاتصال بقاعدة البيانات. تأكد من تشغيل المنصة عبر خادم محلي (Local Server).");
     }
 }
 
@@ -64,7 +88,7 @@ function playAudio() {
         
         const utterance = new SpeechSynthesisUtterance(currentEnglishText);
         utterance.lang = 'en-US'; // تعيين اللغة إلى الإنجليزية الأمريكية
-        utterance.rate = 0.9;     // تقليل سرعة القراءة لتناسب المتعلمين (الرقم الافتراضي هو 1)
+        utterance.rate = 0.9;     // تقليل سرعة القراءة لتناسب المتعلمين
         
         window.speechSynthesis.speak(utterance);
     } else {

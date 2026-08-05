@@ -1,83 +1,117 @@
+/* استدعاء الخطوط الاحترافية */
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap');
+
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #27ae60;
-    --background-color: #f4f7f6;
+    --primary-color: #1a4a38; /* أخضر إسلامي داكن وأنيق */
+    --secondary-color: #d4af37; /* ذهبي هادئ */
+    --accent-color: #2c3e50;
+    --background-color: #f7f9f8;
     --card-bg: #ffffff;
     --text-main: #333333;
-    --border-radius: 10px;
+    --border-radius: 16px;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
 /* الإعدادات الأساسية */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Cairo', sans-serif;
     background-color: var(--background-color);
     color: var(--text-main);
     line-height: 1.6;
     margin: 0;
     padding: 20px;
+    /* يمكنك لاحقاً إضافة مسار لصورة خلفية زخرفية شفافة هنا */
 }
 
 .container {
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto;
 }
 
+/* الترويسة */
 header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    padding: 20px;
 }
 
 header h1 {
     color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+header p {
+    color: #666;
+    font-size: 1.1rem;
 }
 
 /* قسم البحث */
 .search-section {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 input[type="number"] {
-    padding: 12px 15px;
+    padding: 15px 20px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    font-family: 'Cairo', sans-serif;
+    border: 2px solid #e0e0e0;
     border-radius: var(--border-radius);
     width: 60%;
-    max-width: 300px;
+    max-width: 350px;
+    transition: all 0.3s ease;
+}
+
+input[type="number"]:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
 }
 
 button {
-    padding: 12px 20px;
+    padding: 15px 25px;
     font-size: 16px;
-    background-color: var(--secondary-color);
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;
-    transition: background 0.3s ease;
-    font-weight: bold;
+    transition: all 0.3s ease;
+    font-weight: 600;
 }
 
 button:hover {
-    background-color: #1e8449;
+    background-color: #123527;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(26, 74, 56, 0.3);
 }
 
 /* البطاقات التعليمية */
 .card {
     background: var(--card-bg);
-    padding: 25px;
+    padding: 30px;
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 25px;
+    border-top: 4px solid var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
 }
 
 .card h3 {
     color: var(--primary-color);
     margin-top: 0;
-    border-bottom: 2px solid #ecf0f1;
-    padding-bottom: 10px;
+    border-bottom: 2px dashed #eee;
+    padding-bottom: 15px;
+    font-size: 1.4rem;
 }
 
 .hidden {
@@ -86,27 +120,34 @@ button:hover {
 
 /* تنسيق النصوص */
 .quran-text p {
-    font-size: 26px;
-    font-family: 'Traditional Arabic', 'Amiri', serif;
+    font-size: 32px;
+    font-family: 'Amiri', serif; /* خط مخصص للقرآن */
     text-align: center;
     color: var(--primary-color);
-    line-height: 2;
+    line-height: 2.2;
 }
 
 .translation-text p {
-    font-size: 20px;
+    font-size: 1.2rem;
+    font-family: 'Poppins', sans-serif; /* خط مخصص للإنجليزية */
     line-height: 1.8;
-    text-align: left; /* محاذاة لليسار للغة الإنجليزية */
-    color: #444;
+    text-align: left;
+    color: var(--accent-color);
+    background-color: #fdfefe;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid var(--secondary-color);
 }
 
 #play-audio-btn {
-    margin-top: 15px;
-    background-color: #2980b9;
+    margin-top: 20px;
+    background-color: var(--secondary-color);
+    color: #000;
+    width: 100%;
 }
 
 #play-audio-btn:hover {
-    background-color: #1f618d;
+    background-color: #bfa135;
 }
 
 /* الإضاءات اللغوية */
@@ -116,15 +157,26 @@ button:hover {
 }
 
 .linguistic-notes li {
-    background: #fdfefe;
-    margin-bottom: 12px;
-    padding: 15px;
-    border-radius: 6px;
+    background: #fafafa;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    border-radius: 8px;
     border-right: 4px solid var(--secondary-color);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    font-family: 'Cairo', sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 .linguistic-notes li strong {
-    color: #c0392b;
-    font-size: 1.1em;
+    color: var(--primary-color);
+    font-size: 1.2em;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 5px;
+}
+
+#grammar-note p {
+    background: #eef2f1;
+    padding: 15px;
+    border-radius: 8px;
+    color: var(--primary-color);
 }
